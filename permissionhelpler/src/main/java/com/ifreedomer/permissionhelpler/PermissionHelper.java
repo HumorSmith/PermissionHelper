@@ -1,11 +1,13 @@
 package com.ifreedomer.permissionhelpler;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 
 /**
  * 检查权限的工具类
@@ -14,51 +16,54 @@ import android.support.v4.content.ContextCompat;
  */
 public class PermissionHelper {
     private Context mContext;
-    private final int REQUEST_CODE = 1000;
-    private PermissionResultCallback mPermissionResultCallback;
+    static final String TAG = "RxPermissions";
+    private PermissionsFragment permissionsFragment;
+
+    public PermissionHelper(Activity activity) {
+        permissionsFragment = getPermissionsFragment(activity);
+    }
 
     // 启动当前权限页面的公开接口
-    public void requestPermission(Activity activity, PermissionResultCallback permissionResultCallback, String... permissions) {
-        ActivityCompat.requestPermissions(activity, permissions, REQUEST_CODE);
-        this.mPermissionResultCallback = permissionResultCallback;
-    }
-
-
-    // 判断权限集合
-    public boolean lacksPermissions(String... permissions) {
-        for (String permission : permissions) {
-            if (lacksPermission(permission)) {
-                return true;
-            }
+    public void requestPermission(PermissionResultCallback permissionResultCallback, String[] permissions) {
+        if (!isMarshmallow()) {
+            return;
         }
-        return false;
+        permissionsFragment.setPermissionResultCallback(permissionResultCallback);
+        permissionsFragment.requestPermissions(permissions);
     }
 
-    // 判断是否缺少权限
-    private boolean lacksPermission(String permission) {
-        return ContextCompat.checkSelfPermission(mContext, permission) ==
-                PackageManager.PERMISSION_DENIED;
+    boolean isMarshmallow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     }
 
-
-    // 含有全部的权限
-    public boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
-        for (int grantResult : grantResults) {
-            if (grantResult == PackageManager.PERMISSION_DENIED) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (mPermissionResultCallback != null) {
-            mPermissionResultCallback.onPermissionResult(hasAllPermissionsGranted(grantResults));
-        }
-    }
 
     public interface PermissionResultCallback {
         void onPermissionResult(boolean allGranted);
     }
+
+    private PermissionsFragment getPermissionsFragment(Activity activity) {
+        boolean isNewInstance = permissionsFragment == null;
+        if (isNewInstance) {
+            permissionsFragment = new PermissionsFragment();
+            FragmentManager fragmentManager = activity.getFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .add(permissionsFragment, TAG)
+                    .commitAllowingStateLoss();
+            fragmentManager.executePendingTransactions();
+        }
+        return permissionsFragment;
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.M)
+    void requestPermissionsFromFragment(String[] permissions) {
+        permissionsFragment.requestPermissions(permissions);
+    }
+
+    private PermissionsFragment findRxPermissionsFragment(Activity activity) {
+        return (PermissionsFragment) activity.getFragmentManager().findFragmentByTag(TAG);
+    }
+
+
 }
