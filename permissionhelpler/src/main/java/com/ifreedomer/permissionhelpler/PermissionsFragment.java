@@ -3,28 +3,24 @@ package com.ifreedomer.permissionhelpler;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.content.pm.PackageManager;
-import android.nfc.Tag;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PermissionsFragment extends Fragment {
     private final int PERMISSIONS_REQUEST_CODE = 1000;
 
-    private PermissionHelper.PermissionResultCallback mPermissionResultCallback;
+    private PermissionHelper.Callback mPermissionResultCallback;
 
     public PermissionsFragment() {
     }
 
-    public PermissionHelper.PermissionResultCallback getPermissionResultCallback() {
+    public PermissionHelper.Callback getPermissionResultCallback() {
         return mPermissionResultCallback;
     }
 
@@ -44,7 +40,7 @@ public class PermissionsFragment extends Fragment {
 
     }
 
-    public void setPermissionResultCallback(PermissionHelper.PermissionResultCallback permissionResultCallback) {
+    public void setPermissionResultCallback(PermissionHelper.Callback permissionResultCallback) {
         this.mPermissionResultCallback = permissionResultCallback;
     }
 

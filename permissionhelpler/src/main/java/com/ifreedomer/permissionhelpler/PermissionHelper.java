@@ -1,13 +1,10 @@
 package com.ifreedomer.permissionhelpler;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.text.TextUtils;
 
 /**
  * 检查权限的工具类
@@ -24,7 +21,7 @@ public class PermissionHelper {
     }
 
     // 启动当前权限页面的公开接口
-    public void requestPermission(PermissionResultCallback permissionResultCallback, String[] permissions) {
+    public void requestPermission(Callback permissionResultCallback, String[] permissions) {
         if (!isMarshmallow()) {
             return;
         }
@@ -37,7 +34,7 @@ public class PermissionHelper {
     }
 
 
-    public interface PermissionResultCallback {
+    public interface Callback {
         void onPermissionResult(boolean allGranted);
     }
 

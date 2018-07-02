@@ -2,7 +2,6 @@ package com.ifreedomer.permissionhelper;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -24,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         mPermissionHelper.requestPermission( permissionResultCallback,PERMISSIONS);
     }
 
-    private PermissionHelper.PermissionResultCallback permissionResultCallback = new PermissionHelper.PermissionResultCallback() {
+    private PermissionHelper.Callback permissionResultCallback = new PermissionHelper.Callback() {
         @Override
         public void onPermissionResult(boolean allGranted) {
             Toast.makeText(MainActivity.this, "allGranted = " + allGranted, Toast.LENGTH_SHORT).show();
