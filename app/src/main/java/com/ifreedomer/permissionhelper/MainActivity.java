@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          PermissionHelper mPermissionHelper = new PermissionHelper(this);
-        mPermissionHelper.requestPermission( permissionResultCallback,PERMISSIONS);
+        new PermissionHelper(this).requestPermission( permissionResultCallback,PERMISSIONS);
     }
 
     private PermissionHelper.Callback permissionResultCallback = new PermissionHelper.Callback() {
