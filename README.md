@@ -1,7 +1,7 @@
 # PermissionHelper
 this library use to android dynamic permission . no need rxjava.
 
-##How to use
+## How to use
 First step
 ```
     static final String[] PERMISSIONS = new String[]{
@@ -18,8 +18,8 @@ First step
     };
 
  ```
- ### second
+second step
 ```
 new PermissionHelper(this).requestPermission( permissionResultCallback,PERMISSIONS);
 ```
-everything is ok~
+everything is ok~let's beer
