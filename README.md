@@ -2,6 +2,11 @@
 this library use to android dynamic permission . no need rxjava.
 
 ## How to use
+
+```
+compile 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.0'
+```
+
 First step
 ```
     static final String[] PERMISSIONS = new String[]{
