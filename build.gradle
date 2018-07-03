@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,3 +25,34 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+//ext {
+//    minSdkVersion = 11
+//    compileSdkVersion = 25
+//    targetSdkVersion = compileSdkVersion
+//    buildToolsVersion = '25.0.2'
+//
+//    supportLibraryVersion = '25.2.0'
+//    appCompat = "com.android.support:appcompat-v7:$supportLibraryVersion"
+//    supportAnnotations = "com.android.support:support-annotations:$supportLibraryVersion"
+//
+//    bintrayRepo = 'smith'
+//    bintrayName = 'PermissionHelper'
+//
+//    publishedGroupId = 'com.ifreedomer'
+//    artifact = 'PermissionHelper'
+//    libraryName = 'PermissionHelper'
+//    libraryVersion = '1.0.1'
+//
+//    libraryDescription = 'A wrapper for Android 6.0 permissions'
+//
+//    siteUrl = 'https://github.com/HumorSmith/PermissionHelper'
+//    gitUrl = 'https://github.com/HumorSmith/PermissionHelper.git'
+//
+//    developerId = 'smith'
+//    developerName = 'humorsmith'
+//    developerEmail = 'wuyihua86@gmail.com'
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
+//}
