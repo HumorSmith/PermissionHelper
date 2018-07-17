@@ -23,6 +23,9 @@ public class PermissionHelper {
     // 启动当前权限页面的公开接口
     public void requestPermission(Callback permissionResultCallback, String[] permissions) {
         if (!isMarshmallow()) {
+            if (permissionResultCallback!=null){
+                permissionResultCallback.onPermissionResult(true);
+            }
             return;
         }
         permissionsFragment.setPermissionResultCallback(permissionResultCallback);
