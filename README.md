@@ -4,7 +4,7 @@ this library use to android dynamic permission . no need rxjava.
 ## How to use
 
 ```
-implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.1'
+implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.5'
 ```
 
 First step
