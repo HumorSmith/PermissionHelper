@@ -41,7 +41,7 @@ public class PermissionHelper {
         void onPermissionResult(boolean allGranted);
     }
 
-    private PermissionsFragment getPermissionsFragment(Activity activity) {
+    public PermissionsFragment getPermissionsFragment(Activity activity) {
         boolean isNewInstance = permissionsFragment == null;
         if (isNewInstance) {
             permissionsFragment = new PermissionsFragment();
@@ -55,6 +55,13 @@ public class PermissionHelper {
         return permissionsFragment;
     }
 
+
+    public boolean isAllPermissionGranted(Activity activity,String ...permission){
+        if (!isMarshmallow()){
+            return true;
+        }
+        return !getPermissionsFragment(activity).lacksPermissions(permission);
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     void requestPermissionsFromFragment(String[] permissions) {

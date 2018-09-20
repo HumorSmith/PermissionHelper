@@ -26,17 +26,21 @@ public class PermissionsFragment extends Fragment {
 
     @TargetApi(Build.VERSION_CODES.M)
     void requestPermissions(@NonNull String[] permissions) {
-        List<String> permission = new ArrayList<>();
-        for (int i = 0; i < permissions.length; i++) {
-            if (lacksPermission(permissions[i])) {
+        List<String> permission = new ArrayList();
+
+        for(int i = 0; i < permissions.length; ++i) {
+            if (this.lacksPermission(permissions[i])) {
                 permission.add(permissions[i]);
             }
             Log.d("permission = ", permissions[i] + "");
         }
 
         if (permission.size() > 0) {
-            requestPermissions(permission.toArray(new String[permission.size()]), PERMISSIONS_REQUEST_CODE);
+            this.requestPermissions((String[])permission.toArray(new String[permission.size()]), 1000);
+        } else if (this.getPermissionResultCallback() != null) {
+            this.getPermissionResultCallback().onPermissionResult(true);
         }
+
 
     }
 
