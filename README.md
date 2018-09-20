@@ -4,7 +4,7 @@ this library use to android dynamic permission . no need rxjava.
 ## How to use
 
 ```
-implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.5'
+implementation 'com.ifreedomer:com.ifreedomer.permissionhelper:1.0.7'
 ```
 
 First step
@@ -28,3 +28,10 @@ second step
 new PermissionHelper(this).requestPermission( permissionResultCallback,PERMISSIONS);
 ```
 everything is ok~let's beer
+
+
+add-on
+get all permission is granted:
+```
+new PermissionHelper(this).isAllPermissionGranted(MainActivity.this, PERMISSIONS);
+```
